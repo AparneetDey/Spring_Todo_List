@@ -8,13 +8,17 @@ import com.spring.todo.service.TodosService;
 
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -31,12 +35,25 @@ public class TodosController {
         
         return new ResponseEntity<TodosModel>(newTodo, status);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<TodosModel>> getAllTodo() {
+        List<TodosModel> todos = service.findAllTodos();
+        HttpStatus status = HttpStatus.ACCEPTED;
+        return new ResponseEntity<List<TodosModel>>(todos, status);
+    }
     
     @GetMapping("/{id}")
-    public ResponseEntity<TodosModel> getTodo(@PathVariable  Integer id) {
+    public ResponseEntity<TodosModel> getTodo(@PathVariable Integer id) {
         TodosModel todo = service.findTodoById(id).get();
         HttpStatus status = HttpStatus.ACCEPTED;
         return new ResponseEntity<TodosModel>(todo, status);
     }
     
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTodo(@PathVariable Integer id) {
+        service.deleteTodoById(id);
+        HttpStatus status = HttpStatus.ACCEPTED;
+        return new ResponseEntity<String>("Task deleted successfully", status);
+    }
 }

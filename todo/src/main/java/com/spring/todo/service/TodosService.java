@@ -1,5 +1,6 @@
 package com.spring.todo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -18,7 +19,15 @@ public class TodosService {
         return todosRepository.save(todo);
     }
 
-    public Optional<TodosModel> findTodoById(int id) {
+    public List<TodosModel> findAllTodos() {
+        return todosRepository.findAll();
+    }
+
+    public Optional<TodosModel> findTodoById(Integer id) {
         return todosRepository.findById(id);
+    }
+
+    public void deleteTodoById(Integer id) {
+        todosRepository.deleteById(id);
     }
 }
