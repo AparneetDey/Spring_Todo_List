@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table (name = "Todos")
-public class Todos {
+public class TodosModel {
     @Id
     @GeneratedValue (strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
