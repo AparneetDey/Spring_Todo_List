@@ -29,7 +29,7 @@ public class TodosModel {
         return this.description;
     }
 
-    public void getCompleted(boolean completed) {
+    public void setCompleted(boolean completed) {
         this.completed = completed;
     }
     public boolean getCompleted() {

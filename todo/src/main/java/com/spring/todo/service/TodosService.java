@@ -30,4 +30,20 @@ public class TodosService {
     public void deleteTodoById(Integer id) {
         todosRepository.deleteById(id);
     }
+
+    public TodosModel toggleTodoComplete(Integer id) {
+        return todosRepository.findById(id).map(existingTodo -> {
+            if(existingTodo.getCompleted()) {
+                existingTodo.setCompleted(false);
+            } else {
+                existingTodo.setCompleted(true);
+            }
+
+            return todosRepository.save(existingTodo);
+        }).get();
+    }
+
+    public List<TodosModel> findCompletedTodo(boolean completed) {
+        return todosRepository.findByCompleted(completed);
+    }
 }
