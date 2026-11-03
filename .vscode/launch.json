@@ -4,9 +4,10 @@
             "type": "java",
             "name": "Spring Boot-TodoApplication<todo>",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/todo",
             "mainClass": "com.spring.todo.TodoApplication",
             "projectName": "todo",
+            "javaExec": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.4.7-hotspot\\bin\\java.exe",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

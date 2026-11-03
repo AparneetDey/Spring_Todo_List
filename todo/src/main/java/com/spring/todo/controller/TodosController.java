@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class TodosController {
     private final TodosService service;
     
-    @PostMapping("/")
+    @PostMapping({ "", "/" })
     public ResponseEntity<TodosModel> saveOrUpdate(@RequestBody TodosModel todo) {
         TodosModel newTodo = service.saveOrUpdate(todo);
         HttpStatus status = HttpStatus.CREATED;
@@ -33,7 +33,7 @@ public class TodosController {
         return new ResponseEntity<TodosModel>(newTodo, status);
     }
 
-    @GetMapping("/")
+    @GetMapping({ "", "/" })
     public ResponseEntity<List<TodosModel>> getAllTodo() {
         List<TodosModel> todos = service.findAllTodos();
         HttpStatus status = HttpStatus.ACCEPTED;
